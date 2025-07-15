@@ -3,6 +3,8 @@ import numpy as np
 #import matplotlib.pyplot as plt
 import streamlit as st
 from users import *
+import requests
+import io
 
 
 def loss_ratio(claims, gep):
@@ -82,8 +84,14 @@ def main_dashboard():
     st.title("MNC Insurance Actuarial Data Analysis Dashboard")
     st.subheader("Created by Actuary Department")
     st.write("Request ke henry.sihombing@mnc-insurance.com")
+    file_url = "https://drive.google.com/uc?export=download&id=1MMW6WShqSni52onkXLnOOG5bD_IBMzDz"
+    
+    # Ambil file dari Google Drive
+    response = requests.get(file_url)
+    response.raise_for_status()  # Biar error-nya ketangkep kalau gagal download
 
-    df = pd.read_parquet("/Users/henryimmanuelsihombing/Downloads/23 Juni 2025.parquet")
+    # Baca file Parquet langsung dari memory
+    df = pd.read_parquet(io.BytesIO(response.content))
 
     st.sidebar.header("Filter Data")
 
