@@ -234,7 +234,7 @@ def main_dashboard():
             x='UW_YEAR:O',
             y='CoR:Q',
             text='label',
-            color=alt.value('yellow')
+            color=alt.value('black')
         )
 
         st.markdown("### Combined Ratio per UW Year")
